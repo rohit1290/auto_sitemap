@@ -218,6 +218,7 @@ function auto_sitemap_getOtherEntityUrls( $entities ){
 		}
 		
 		$options['limit'] = $max_urls;
+		$options['wheres'] = array('e.access_id = 2');
 				
 		$entradas = elgg_get_entities($options);
 				
