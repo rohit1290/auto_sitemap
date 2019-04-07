@@ -1,6 +1,6 @@
 <?php
 /* ######################################################
- *  RamÃ³n Iglesias / ura soul
+ *  Ram¨®n Iglesias / ura soul
  *  www.ureka.org
  * ###################################################### */
 
@@ -8,15 +8,15 @@ $body ='';
 
 foreach ($vars['urls'] as $element) {
 		$body .= '<url>';
-		$body .= '<loc>' . $element['loc'] . '</loc>';
+		$body .= '<loc>' . trim($element['loc']) . '</loc>';
 		if ( $element['priority'] != 'none'){
-			$body .= '<priority>' . $element['priority'] . '</priority>';	
+			$body .= '<priority>' . $element['priority'] . '</priority>';
 		}
 		if ( $element['lastmod'] ){
-			$body .= '<lastmod>' . date('Y-m-d', $element['lastmod']  ) . '</lastmod>';	
+			$body .= '<lastmod>' . date('Y-m-d', $element['lastmod']  ) . '</lastmod>';
 		}
 		if ( $element['changefreq'] && $element['changefreq'] != 'disabled'){
-			$body .= '<changefreq>' . $element['changefreq'] . '</changefreq>';	
+			$body .= '<changefreq>' . $element['changefreq'] . '</changefreq>';
 		}
 		$body .= '</url>';
 }
