@@ -8,7 +8,7 @@ return [
 		],
 		'auto_sitemap:object:xmlview' => [
 			'path' => 'sitemap.xml',
-			'resource' => 'auto_sitemap/default',
+			'resource' => 'auto_sitemap/index',
 		],
 		'auto_sitemap:object:xslview' => [
 			'path' => 'sitemap.xsl',
