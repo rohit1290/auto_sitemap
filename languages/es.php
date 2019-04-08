@@ -5,7 +5,6 @@
  * ###################################################### */
 return array(
 	'auto_sitemap:sitemap-learn-more' => 'Si quieres aprender más sobre los sitemaps visita: ',	
-	'auto_sitemap:recordatorio:htaccess' => 'Recuerda añadir las lineas necesarias en tu .htaccess (Lee el README.TXT)',
 	'auto_sitemap:entity-urls:title' =>'Entity URLs',
 	'auto_sitemap:entity-urls:description' =>'Escoge que objetos deseas añadir a tu sitemap',
 	'auto_sitemap:custom-urls:title' =>'Custom URLs',

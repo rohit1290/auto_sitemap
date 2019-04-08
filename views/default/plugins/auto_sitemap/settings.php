@@ -275,7 +275,6 @@ foreach ($frequencies as $frequency) {
         );
 }
 
-$body .= elgg_echo('auto_sitemap:recordatorio:htaccess');
 elgg_require_js("plugins/auto_sitemap/settings");
 ?>
 

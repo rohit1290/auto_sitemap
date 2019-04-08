@@ -7,7 +7,6 @@
 $french = array(
 
 	'auto_sitemap:sitemap-learn-more' => "Pour en savoir plus sur les sitemaps, visitez : ",
-	'auto_sitemap:recordatorio:htaccess' => "Pensez à ajouter les lignes nécessaires dans votre fichier .htaccess (consultez le fichier README.TXT)",
 
 	'auto_sitemap:entity-urls:title' => "URLs de entités",
 	'auto_sitemap:entity-urls:description' => "Choisissez quels éléments vous souhaitez ajouter à votre sitemap",

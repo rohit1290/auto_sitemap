@@ -2,7 +2,6 @@
 return array(
         'auto_sitemap:sitemap' => 'Sitemap',
 	'auto_sitemap:sitemap-learn-more' => 'If you want to learn more about sitemaps visit: ',
-	'auto_sitemap:recordatorio:htaccess' => 'Remember to add the necessary lines to your .htaccess (Read the README.TXT)',
 
 	'auto_sitemap:entity-urls:title' =>'Entity URLs',
 	'auto_sitemap:entity-urls:description' =>'Choose which items you want to add to your sitemap',
