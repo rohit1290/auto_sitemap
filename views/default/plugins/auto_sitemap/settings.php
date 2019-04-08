@@ -4,7 +4,7 @@
  *  www.ureka.org
  * ###################################################### */
 
-$toggle_icon = ' <img src="' . elgg_get_site_url() . 'mod/auto_sitemap/graphics/toggle.png" width=15 style="vertical-align: bottom;"/>';
+$toggle_icon = ' <img src="' . elgg_get_site_url() . 'mod/auto_sitemap/graphics/toggle.png" width=15/>';
 
 $optionsYesNo = array( 
         elgg_echo('option:yes') => 1,
@@ -96,7 +96,7 @@ $content = elgg_view('input/text',array(
         'value'=>( $vars["entity"]->main_url ? $vars["entity"]->main_url : elgg_get_site_url()
 )));
 
-$content .='<div style="width:50%;float:left">';
+$content .='<div>';
 $content .= elgg_echo('auto_sitemap:changefreq:description').'<br>';
 $content .= elgg_view('input/dropdown', array(
         'name' => 'params[main_url_changefreq]',
@@ -105,7 +105,7 @@ $content .= elgg_view('input/dropdown', array(
 ));
 
 $content .='</div>';
-$content .='<div style="width:50%;float:left">';
+$content .='<div>';
 
 $content .= elgg_echo('auto_sitemap:priority:description').'<br>';
 $content .= elgg_view('input/dropdown', array(
@@ -150,7 +150,7 @@ foreach ($relevantEntities as $relevantEntity) {
                 'options'=>$optionsYesNo
         ));
 	
-	$content .='<div style="width:50%;float:left">';
+	$content .='<div>';
 		$content .= elgg_echo('auto_sitemap:changefreq:description').'<br>';
 		$content .= elgg_view('input/dropdown', array(
                                         'name' => 'params[' . $relevantEntity . '_url_changefreq]',
@@ -158,7 +158,7 @@ foreach ($relevantEntities as $relevantEntity) {
                                         'value' => $vars['entity']->$entityChangefreq
                 ));
 	$content .='</div>';
-	$content .='<div style="width:50%;float:left">';
+	$content .='<div>';
 	$content .= elgg_echo('auto_sitemap:priority:description').'<br>';
 	$content .= elgg_view('input/dropdown', array(
                                 'name' => 'params[' . $relevantEntity . '_url_priority]',
@@ -206,7 +206,7 @@ $content .= elgg_view('input/hidden',array(
         'value'=>$vars["entity"]->other_urls_types)
 );
 
-$content .='<div style="width:50%;float:left">';
+$content .='<div>';
 $content .= elgg_echo('auto_sitemap:changefreq:description').'<br>';
 $content .= elgg_view('input/dropdown', array(
         'name' => 'params[other_url_changefreq]',
@@ -214,7 +214,7 @@ $content .= elgg_view('input/dropdown', array(
         'value' => $vars['entity']->other_url_changefreq
 ));
 $content .='</div>';
-$content .='<div style="width:50%;float:left">';
+$content .='<div>';
 	
 $content .= elgg_echo('auto_sitemap:priority:description').'<br>';
 $content .= elgg_view('input/dropdown', array(
