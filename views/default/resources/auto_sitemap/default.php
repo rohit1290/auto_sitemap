@@ -59,11 +59,11 @@ switch ($type) {
   case 'blog':
   case 'file':
   case 'event':
-
-    $urls = auto_sitemap_getEntityUrls( $page[0] );
+    
+    $urls = auto_sitemap_getEntityUrls( $type );
 
     // if this entity is not active in settings, then sitemap doesn't exist
-    if ( ! elgg_get_plugin_setting($page[0] . '_url','auto_sitemap') ){
+    if ( ! elgg_get_plugin_setting($type . '_url','auto_sitemap') ){
       return false;
 
     }else{
