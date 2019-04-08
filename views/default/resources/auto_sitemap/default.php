@@ -1,5 +1,5 @@
 <?php
-$type = elgg_extract('type', $vars);
+$type = elgg_extract('type', $vars, 'index');
 
 $schema = elgg_get_plugin_setting('schema','auto_sitemap');
 if ( empty( $schema )){
