@@ -78,7 +78,10 @@ function auto_sitemap_getEntityUrls( $tipo ){
 	}
 
 	$options['limit'] = $max_urls;
-				$options['wheres'] = array('e.access_id = 2');
+	// $options['wheres'] = array('e.access_id = 2');
+	$options['wheres'] = [function(\Elgg\Database\QueryBuilder $qb, $main_alias) {
+			return $qb->compare("{$main_alias}.access_id", '=', '2');
+		}];
 	$entradas = elgg_get_entities($options);
 
 	foreach ($entradas as $value) {
