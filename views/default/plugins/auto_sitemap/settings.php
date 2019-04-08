@@ -276,26 +276,8 @@ foreach ($frequencies as $frequency) {
 }
 
 $body .= elgg_echo('auto_sitemap:recordatorio:htaccess');
+elgg_require_js("plugins/auto_sitemap/settings");
 ?>
-<script type="text/javascript">
-	$(document).ready(function(){
-		
-		// cada vez que se pincha un checkbox se recorren todos para actualizar el hidden
-		$('.dvOtherEntities input[type=checkbox]').click(function(){
-			$('#inOtherEntities').val("");
-			$('.dvOtherEntities input[type=checkbox]').each(function(){
-				if ( $(this).is(':checked') ){
-					// ugly hack para que no pinte la primera coma
-					if ( $('#inOtherEntities').val() == ""){
-						$('#inOtherEntities').val( $(this).val() );
-					}else{
-						$('#inOtherEntities').val( $('#inOtherEntities').val() + ',' + $(this).val() );
-					}
-				}
-			});
-		});	
-	});
-</script>
 
 <style>
 	form{
