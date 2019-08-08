@@ -7,37 +7,36 @@
 
 // Busco las entidades que deben aparecer en el sitemap y se las paso a la vista
 global $relevantEntities;
-$relevantEntities = Array('user' , 'group' , 'blog' ,'file' , 'event');
+$relevantEntities = ['user' , 'group' , 'blog' ,'file' , 'event'];
 
-function auto_sitemap_getCustomUrls( $tipos ){
+function auto_sitemap_getCustomUrls($tipos) {
 	
 	// get main url
-	$mainurl = elgg_get_plugin_setting('main_url','auto_sitemap');
-	$changefreq = elgg_get_plugin_setting('main_url_changefreq','auto_sitemap');
-	$priority = elgg_get_plugin_setting('main_url_priority','auto_sitemap');
+	$mainurl = elgg_get_plugin_setting('main_url', 'auto_sitemap');
+	$changefreq = elgg_get_plugin_setting('main_url_changefreq', 'auto_sitemap');
+	$priority = elgg_get_plugin_setting('main_url_priority', 'auto_sitemap');
 
-	if ( !empty($mainurl) ){
-		$urls[] = Array(
+	if ( !empty($mainurl) ) {
+		$urls[] = [
 						'loc' => $mainurl,
 						'changefreq' => $changefreq,
 						'priority' => $priority
-					);
+					];
 	}
 	
 	// get custmo urls
 	foreach ($tipos as $tipo) {
-
-		$urlList = Array();
-		$urlList = explode("\n", elgg_get_plugin_setting( $tipo . '_url','auto_sitemap'));
-		$priority = elgg_get_plugin_setting( $tipo . '_url_priority','auto_sitemap');
+		$urlList = [];
+		$urlList = explode("\n", elgg_get_plugin_setting( $tipo . '_url', 'auto_sitemap'));
+		$priority = elgg_get_plugin_setting( $tipo . '_url_priority', 'auto_sitemap');
 
 		foreach ($urlList as $url) {
-			if ( ! empty($url) ){
-				$urls[] = Array(
+			if ( ! empty($url) ) {
+				$urls[] = [
 								'loc' => $url,
 								'changefreq' => $tipo,
 								'priority' => $priority
-							);
+							];
 			}
 		}
 	}
@@ -45,7 +44,7 @@ function auto_sitemap_getCustomUrls( $tipos ){
 	return $urls;
 }
 
-function auto_sitemap_getEntityUrls( $tipo ){
+function auto_sitemap_getEntityUrls($tipo) {
 
 	switch ($tipo) {
 		case 'user':
@@ -69,11 +68,11 @@ function auto_sitemap_getEntityUrls( $tipo ){
 		break;
 	}
 
-	$changefreq = elgg_get_plugin_setting( $tipo . '_url_changefreq','auto_sitemap');
-	$priority = elgg_get_plugin_setting( $tipo . '_url_priority','auto_sitemap');
-	$max_urls = elgg_get_plugin_setting('max_urls','auto_sitemap');
+	$changefreq = elgg_get_plugin_setting( $tipo . '_url_changefreq', 'auto_sitemap');
+	$priority = elgg_get_plugin_setting( $tipo . '_url_priority', 'auto_sitemap');
+	$max_urls = elgg_get_plugin_setting('max_urls', 'auto_sitemap');
 
-	if ( ! is_numeric($max_urls) || $max_urls < 1 ){
+	if ( ! is_numeric($max_urls) || $max_urls < 1 ) {
 		$max_urls = 5000;
 	}
 
@@ -81,16 +80,15 @@ function auto_sitemap_getEntityUrls( $tipo ){
 	// $options['wheres'] = array('e.access_id = 2');
 	$options['wheres'] = [function(\Elgg\Database\QueryBuilder $qb, $main_alias) {
 			return $qb->compare("{$main_alias}.access_id", '=', '2');
-		}];
+	}];
 	$entradas = elgg_get_entities($options);
 
 	foreach ($entradas as $value) {
-
-		$entityUrls[] = array('loc' => $value->getURL(),
+		$entityUrls[] = ['loc' => $value->getURL(),
 								'lastmod' => $value->getTimeUpdated(),
 								'changefreq' => $changefreq,
 								'priority' => $priority
-							);
+							];
 	}
 
 	// Ordeno por fecha
@@ -101,18 +99,17 @@ function auto_sitemap_getEntityUrls( $tipo ){
 }
 
 
-function auto_sitemap_getOtherEntityUrls( $entities ){
+function auto_sitemap_getOtherEntityUrls($entities) {
 
 	foreach ($entities as $entity) {
-
 		$options['type'] = 'object';
 		$options['subtypes'] = $entity;
 
-		$changefreq = elgg_get_plugin_setting('other_url_changefreq','auto_sitemap');
-		$priority = elgg_get_plugin_setting('other_url_priority','auto_sitemap');
-		$max_urls = elgg_get_plugin_setting('max_urls','auto_sitemap');
+		$changefreq = elgg_get_plugin_setting('other_url_changefreq', 'auto_sitemap');
+		$priority = elgg_get_plugin_setting('other_url_priority', 'auto_sitemap');
+		$max_urls = elgg_get_plugin_setting('max_urls', 'auto_sitemap');
 
-		if ( ! is_numeric($max_urls) || $max_urls < 1 ){
+		if ( ! is_numeric($max_urls) || $max_urls < 1 ) {
 			$max_urls = 5000;
 		}
 
@@ -121,12 +118,11 @@ function auto_sitemap_getOtherEntityUrls( $entities ){
 		$entradas = elgg_get_entities($options);
 
 		foreach ($entradas as $value) {
-
-			$entityUrls[] = array('loc' => $value->getURL(),
+			$entityUrls[] = ['loc' => $value->getURL(),
 									'lastmod' => $value->getTimeUpdated(),
 									'changefreq' => $changefreq,
 									'priority' => $priority
-								);
+								];
 		}
 	}
 
@@ -139,10 +135,10 @@ function auto_sitemap_getOtherEntityUrls( $entities ){
 
 
 function xml_plugin_get_otherEntityTypes() {
-	$valid_types = array();
+	$valid_types = [];
 	$entity_stats = get_entity_statistics();
 
-	foreach($entity_stats['object'] as $subtype => $counter) {
+	foreach ($entity_stats['object'] as $subtype => $counter) {
 		if ($subtype != 'plugin' &&
 			$subtype != '__base__' &&
 			$subtype != 'admin_notice' &&
@@ -158,11 +154,10 @@ function xml_plugin_get_otherEntityTypes() {
 	return $valid_types;
 }
 
-function auto_sitemap_comparar($x,$y){
+function auto_sitemap_comparar($x, $y) {
 	if ( $x['lastmod'] == $y['lastmod'] )
 		return 0;
 	else if ( $x['lastmod'] > $y['lastmod'] )
 		return -1;
-	else
-		return 1;
+	else return 1;
 }

@@ -8,7 +8,7 @@ header ("Content-Type:text/xml");
 
 $body .='<?xml version="1.0" encoding="UTF-8"?>';
 
-if ( $vars['flagXsl'] ){
+if ( $vars['flagXsl'] ) {
 	$body .='
 <urlset
 	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -17,14 +17,12 @@ if ( $vars['flagXsl'] ){
 	http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
 ';
-		
-}else{
+} else {
 	$body .='
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ';
-	
 }
-$body .= elgg_view('auto_sitemap/sitemaps_org_0_9/0_9_element',array('urls' => $vars['urls']));
+$body .= elgg_view('auto_sitemap/sitemaps_org_0_9/0_9_element', ['urls' => $vars['urls']]);
 
 $body .='
 </urlset>';
