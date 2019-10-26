@@ -4,7 +4,7 @@
  *  monchomail@gmail.com 
  *  12-08-2012
  * ###################################################### */
-$french = array(
+return array(
 
 	'auto_sitemap:sitemap-learn-more' => "Pour en savoir plus sur les sitemaps, visitez : ",
 
@@ -55,4 +55,3 @@ $french = array(
 	'auto_sitemap:priority:description' => "Choisissez une priorité pour ces URLs",
 
 );
-add_translation("fr", $french);
