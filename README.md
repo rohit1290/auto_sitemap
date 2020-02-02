@@ -9,7 +9,7 @@ Each entity type will be placed in it's own sitemap.
 	
 Additionally you can manually specify custom URLs of your website.
 
-Sitemaps can be formated with XSL for candy reading	
+Sitemaps can be formated with XSL for candy reading
 
 INSTALL
 =======

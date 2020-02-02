@@ -25,7 +25,7 @@ $optionsChangefreq = [
 		'yearly' => elgg_echo('auto_sitemap:updatefreq:yearly'),
 		'never' => elgg_echo('auto_sitemap:updatefreq:never')
 ];
-					
+
 $optionsPriority = [
 		'none' => elgg_echo('auto_sitemap:priority:none'),
 		'0.0' => '0.0',
@@ -53,7 +53,7 @@ $content .= elgg_view('input/dropdown', [
 		'value' => $vars['entity']->schema
 ]);
 $content .= '<br><br>';
-										
+
 // max amount of urls to display in sitemap
 $content .= '<h4>' . elgg_echo('auto_sitemap:max_urls:title') . '</h4>';
 $content .= elgg_echo('auto_sitemap:max_urls:description') . '<br>';
@@ -71,7 +71,7 @@ $content .= elgg_view('input/text', [
 $content .= '<br><br>';
 
 // use custom CSS?
-									
+
 $activo = ($vars['entity']->use_xsl ? 1 : 0);
 
 $content .= '<h4>' . elgg_echo('auto_sitemap:use_xsl:title') . '</h4>';
@@ -81,7 +81,7 @@ $content .= elgg_view('input/radio', [
 		'value'=> $activo,
 		'options'=>$optionsYesNo
 ]);
-									
+
 $body .= elgg_view_module(
 		'inline',
 		elgg_echo('auto_sitemap:basic-config:title'),
@@ -141,14 +141,14 @@ foreach ($relevantEntities as $relevantEntity) {
 	$entityPriority = $relevantEntity . '_url_priority';
 
 	$activo = ($vars['entity']->$entityUrl ? 1 : 0);
-	
+
 	$content = elgg_echo('auto_sitemap:module:active:entity', [elgg_echo('auto_sitemap:entity:' . $relevantEntity . ':title')]);
 	$content .= elgg_view('input/radio', [
 				'name'=>'params[' . $relevantEntity . '_url]',
 				'value'=> $activo,
 				'options'=>$optionsYesNo
 		]);
-	
+
 	$content .='<div>';
 		$content .= elgg_echo('auto_sitemap:changefreq:description').'<br>';
 		$content .= elgg_view('input/dropdown', [
@@ -178,7 +178,7 @@ foreach ($relevantEntities as $relevantEntity) {
 				'<div id="toggle-' . $relevantEntity . '" style="display:' . ( $activo ? 'block' : 'none' ) . '">' . $content . '</div>'
 		);
 }
-								
+
 // entity URLs
 
 $typeList = [];
@@ -214,7 +214,7 @@ $content .= elgg_view('input/dropdown', [
 ]);
 $content .='</div>';
 $content .='<div>';
-	
+
 $content .= elgg_echo('auto_sitemap:priority:description').'<br>';
 $content .= elgg_view('input/dropdown', [
 		'name' => 'params[other_url_priority]',
@@ -222,7 +222,7 @@ $content .= elgg_view('input/dropdown', [
 		'value' => $vars['entity']->other_url_priority
 ]);
 $content .='</div>';
-					
+
 $moduleHeader = elgg_view('output/url', [
 	'href' => '#toggle-other-entity' ,
 	'rel' => 'toggle',
@@ -234,12 +234,12 @@ $body .= elgg_view_module(
 		$moduleHeader,
 		'<div id="toggle-other-entity" style="display:' . ( $activo ? 'block' : 'none' ) . '">' . $content . '</div>'
 );
-					
-// custom URLs	
+
+// custom URLs
 
 $body .= '<h2>' . elgg_echo('auto_sitemap:custom-urls:title') . '</h2>';
 $body .= '<p>' . elgg_echo('auto_sitemap:custom-urls:description') . '</p>';
-					
+
 $frequencies = ['always' , 'hourly' , 'daily' ,'weekly' , 'monthly', 'yearly', 'never'];
 foreach ($frequencies as $frequency) {
 	// name attributes
@@ -252,14 +252,14 @@ foreach ($frequencies as $frequency) {
 				'name'=>'params[' . $frequency . '_url]',
 				'value'=>$vars["entity"]->$entityUrl]
 		);
-	
+
 	$content .= elgg_echo('auto_sitemap:priority:description').'<br>';
 	$content .= elgg_view('input/dropdown', [
 				'name' => 'params[' . $frequency . '_url_priority]',
 				'options_values' => $optionsPriority,
 				'value' => $vars['entity']->$entityPriority
 		]);
-	
+
 	$moduleHeader = elgg_view('output/url', [
 		'href' => '#toggle-' . $frequency,
 		'rel' => 'toggle',

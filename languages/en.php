@@ -26,7 +26,7 @@ return array(
 	'auto_sitemap:updatefreq:monthly' => 'every month (monthly)',
 	'auto_sitemap:updatefreq:yearly' => 'every year (yearly)',
 	'auto_sitemap:updatefreq:never' => 'never (never)',
-	
+
 	'auto_sitemap:module:header:changefreq' => 'URLs that get updated ',
 	'auto_sitemap:changefreq_url:description' => 'Each URL in one line',
 	'auto_sitemap:other_entities:description' => 'Choose other entities to include in the sitemap',
@@ -37,7 +37,7 @@ return array(
 	'auto_sitemap:entity:file:title' => 'uploaded files',
 	'auto_sitemap:entity:event:title' => 'events from event_calendar',
 	'auto_sitemap:entity:otros:title' => 'other entities',
-		
+
 	'option:yes' => 'Yes',
 	'option:no' => 'No',
 
