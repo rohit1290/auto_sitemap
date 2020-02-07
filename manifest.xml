@@ -3,7 +3,7 @@
 	<name>Auto Sitemap</name>
 	<id>auto_sitemap</id>
 	<author>Rohit Gupta / Ramón Iglesias / ura soul</author>
-	<version>3.0.1</version>
+	<version>3.1.0</version>
 	<category>User admin</category>
 	<category>Site admin</category>
 	<description>Create a dinamic sitemap.xml file based on elgg public entities</description>
