@@ -1,0 +1,17 @@
+{
+	"name": "auto_sitemap",
+	"description": "Create a dynamic sitemap.xml file based on elgg public entities",
+	"type": "elgg-plugin",
+	"keywords": ["elgg", "plugin", "tools"],
+	"license": "GPL-2.0",
+	"support": {
+		"source": "https://github.com/rohit1290/auto_sitemap",
+		"issues": "https://github.com/rohit1290/auto_sitemap/issues"
+	},
+	"require": {
+		"composer/installers": "^1.0.8"
+	},
+	"conflict": {
+		"elgg/elgg": "<3.3"
+	}
+}

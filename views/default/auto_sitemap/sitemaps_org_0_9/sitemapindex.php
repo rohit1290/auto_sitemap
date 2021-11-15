@@ -1,16 +1,10 @@
 <?php
-/* ######################################################
- *  Ramón Iglesias / ura soul
- *  www.ureka.org
- * ###################################################### */
 
 header ("Content-Type:text/xml");
 
 $body .='<?xml version="1.0" encoding="UTF-8"?>';
-
 if ( $vars['flagXsl'] ) {
-	$body .='<?xml-stylesheet type="text/xsl"
-    href="' . elgg_get_site_url() . 'sitemapindex.xsl"?>
+	$body .='<?xml-stylesheet type="text/xsl" href="' . elgg_get_site_url() . 'sitemapindex.xsl"?>
 <sitemapindex
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
@@ -22,7 +16,20 @@ if ( $vars['flagXsl'] ) {
 }
 
 foreach ($vars['sitemaps'] as $entity) {
-	$body .= '<sitemap><loc>' . elgg_get_site_url() . 'auto_sitemap/' . $entity . '</loc></sitemap>';
+	if($entity == "custom") {
+		$page = 1;
+	} else {
+		$count = elgg_count_entities([
+			'type' => 'object',
+			'subtype' => $entity
+		]);
+		$max_urls = get_max_urls_count();
+		$page = ceil($count/$max_urls);
+	}
+
+	for ($i = 1; $i <= $page ; $i++) {
+		$body .= '<sitemap><loc>' . elgg_get_site_url() . 'auto_sitemap/' . $entity . '/' . $i . '</loc></sitemap>';
+	}
 }
 
 $body .= '</sitemapindex>';

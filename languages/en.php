@@ -1,6 +1,6 @@
 <?php
-return array(
-        'auto_sitemap:sitemap' => 'Sitemap',
+return [
+  'auto_sitemap:sitemap' => 'Sitemap',
 	'auto_sitemap:sitemap-learn-more' => 'If you want to learn more about sitemaps visit: ',
 
 	'auto_sitemap:entity-urls:title' =>'Entity URLs',
@@ -17,7 +17,7 @@ return array(
 	'auto_sitemap:schema:description' => 'For the time being there is only implemented version 0.9 of sitemaps.org.',
 	'auto_sitemap:main_url:title' => 'Main URL of the site',
 
-	/* Opciones dropdown*/
+	/* Options dropdown*/
 	'auto_sitemap:updatefreq:disabled' => 'disabled (Skip this value)',
 	'auto_sitemap:updatefreq:always' => 'continuously (always)',
 	'auto_sitemap:updatefreq:hourly' => 'every hour (hourly)',
@@ -31,17 +31,14 @@ return array(
 	'auto_sitemap:changefreq_url:description' => 'Each URL in one line',
 	'auto_sitemap:other_entities:description' => 'Choose other entities to include in the sitemap',
 	'auto_sitemap:module:active:entity' => 'Add %s to sitemap? ',
-	'auto_sitemap:entity:user:title' => 'user profiles',
-	'auto_sitemap:entity:group:title' => 'groups profiles',
-	'auto_sitemap:entity:blog:title' => 'blog posts',
-	'auto_sitemap:entity:file:title' => 'uploaded files',
-	'auto_sitemap:entity:event:title' => 'events from event_calendar',
-	'auto_sitemap:entity:otros:title' => 'other entities',
-
+  
+  'collection:object:user' => "Users",
+  'collection:object:group' => "Groups",
+  
 	'option:yes' => 'Yes',
 	'option:no' => 'No',
 
 	'auto_sitemap:priority:none' => 'None',
 	'auto_sitemap:changefreq:description' => 'Choose a value for the changefreq atribute',
 	'auto_sitemap:priority:description' => 'Choose a priority for this URLs',
-);
+];

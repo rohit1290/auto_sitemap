@@ -1,8 +1,4 @@
 <?php
-/* ######################################################
- *  Ramón Iglesias / ura soul
- *  www.ureka.org
- * ###################################################### */
 
 $toggle_icon = ' <img src="' . elgg_get_site_url() . 'mod/auto_sitemap/graphics/toggle.png" width=15/>';
 
@@ -54,7 +50,7 @@ $content .= elgg_view('input/dropdown', [
 ]);
 $content .= '<br><br>';
 
-// max amount of urls to display in sitemap
+// max number of urls to display in sitemap
 $content .= '<h4>' . elgg_echo('auto_sitemap:max_urls:title') . '</h4>';
 $content .= elgg_echo('auto_sitemap:max_urls:description') . '<br>';
 
@@ -69,18 +65,6 @@ $content .= elgg_view('input/text', [
 		'value'=> $max_urls
 ]);
 $content .= '<br><br>';
-
-// use custom CSS?
-
-$activo = ($vars['entity']->use_xsl ? 1 : 0);
-
-$content .= '<h4>' . elgg_echo('auto_sitemap:use_xsl:title') . '</h4>';
-$content .= elgg_echo('auto_sitemap:use_xsl:description') . '<br>';
-$content .= elgg_view('input/radio', [
-		'name'=>'params[use_xsl]',
-		'value'=> $activo,
-		'options'=>$optionsYesNo
-]);
 
 $body .= elgg_view_module(
 		'inline',
@@ -142,7 +126,7 @@ foreach ($relevantEntities as $relevantEntity) {
 
 	$activo = ($vars['entity']->$entityUrl ? 1 : 0);
 
-	$content = elgg_echo('auto_sitemap:module:active:entity', [elgg_echo('auto_sitemap:entity:' . $relevantEntity . ':title')]);
+	$content = elgg_echo('auto_sitemap:module:active:entity', [elgg_echo('collection:object:' . $relevantEntity)]);
 	$content .= elgg_view('input/radio', [
 				'name'=>'params[' . $relevantEntity . '_url]',
 				'value'=> $activo,
@@ -169,7 +153,7 @@ foreach ($relevantEntities as $relevantEntity) {
 	$moduleHeader = elgg_view('output/url', [
 		'href' => '#toggle-' . $relevantEntity,
 		'rel' => 'toggle',
-		'text' => 	elgg_echo('auto_sitemap:entity:' . $relevantEntity . ':title') . $toggle_icon
+		'text' => 	elgg_echo('collection:object:' . $relevantEntity) . $toggle_icon
 	]);
 
 	$body .= elgg_view_module(
@@ -178,62 +162,6 @@ foreach ($relevantEntities as $relevantEntity) {
 				'<div id="toggle-' . $relevantEntity . '" style="display:' . ( $activo ? 'block' : 'none' ) . '">' . $content . '</div>'
 		);
 }
-
-// entity URLs
-
-$typeList = [];
-$typeList = xml_plugin_get_otherEntityTypes();
-
-// explode and remove empty
-$activeEntities = array_filter(explode(',', $vars["entity"]->other_urls_types ));
-
-$activo = !empty($activeEntities);
-
-$content = elgg_echo('auto_sitemap:other_entities:description').'<br>';
-$content .= '<div class="dvOtherEntities">';
-$content .= elgg_view('input/checkboxes', [
-		'name'=>'rbOtherEntities',
-		'value'=>$activeEntities,
-		'options'=>$typeList,
-		'default' => false]);
-$content .= '</div>';
-
-$content .= elgg_view('input/hidden', [
-		'id'=>'inOtherEntities',
-		'class'=>'inOtherEntities',
-		'name'=>'params[other_urls_types]',
-		'value'=>$vars["entity"]->other_urls_types]
-);
-
-$content .='<div>';
-$content .= elgg_echo('auto_sitemap:changefreq:description').'<br>';
-$content .= elgg_view('input/dropdown', [
-		'name' => 'params[other_url_changefreq]',
-		'options_values' => $optionsChangefreq,
-		'value' => $vars['entity']->other_url_changefreq
-]);
-$content .='</div>';
-$content .='<div>';
-
-$content .= elgg_echo('auto_sitemap:priority:description').'<br>';
-$content .= elgg_view('input/dropdown', [
-		'name' => 'params[other_url_priority]',
-		'options_values' => $optionsPriority,
-		'value' => $vars['entity']->other_url_priority
-]);
-$content .='</div>';
-
-$moduleHeader = elgg_view('output/url', [
-	'href' => '#toggle-other-entity' ,
-	'rel' => 'toggle',
-	'text' => elgg_echo('auto_sitemap:entity:otros:title') . $toggle_icon
-]);
-
-$body .= elgg_view_module(
-		'inline',
-		$moduleHeader,
-		'<div id="toggle-other-entity" style="display:' . ( $activo ? 'block' : 'none' ) . '">' . $content . '</div>'
-);
 
 // custom URLs
 

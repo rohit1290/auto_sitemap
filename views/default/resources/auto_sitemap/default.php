@@ -1,5 +1,6 @@
 <?php
 $type = elgg_extract('type', $vars, 'index');
+$page = elgg_extract('page', $vars, 1);
 
 $schema = elgg_get_plugin_setting('schema', 'auto_sitemap');
 if ( empty( $schema )) {
@@ -7,7 +8,7 @@ if ( empty( $schema )) {
 }
 
 // incluir o no los estilos
-$flagXsl = elgg_get_plugin_setting('use_xsl', 'auto_sitemap');
+$flagXsl = (bool)elgg_get_plugin_setting('use_xsl', 'auto_sitemap');
 
 switch ($type) {
 	case 'index':
@@ -18,18 +19,11 @@ switch ($type) {
 		global $relevantEntities;
 
 		foreach ($relevantEntities as $entity) {
-			if ( elgg_get_plugin_setting( $entity . '_url', 'auto_sitemap') ) {
+			if (elgg_get_plugin_setting( $entity . '_url', 'auto_sitemap')) {
 				$sitemaps[] = $entity;
 			}
 		}
-
-		// other entities
-		$otherActiveEntities = array_filter(explode(',', elgg_get_plugin_setting('other_urls_types', 'auto_sitemap')));
-
-		if ( !empty($otherActiveEntities)) {
-			$sitemaps[] = 'other' ;
-		}
-		// Pinto el sitemap (indice)
+		// index sitemap
 		echo elgg_view('auto_sitemap/' . $schema . "/sitemapindex", ['sitemaps' => $sitemaps,'flagXsl'=> $flagXsl]);
 
 	return true;
@@ -38,10 +32,10 @@ switch ($type) {
 	case 'custom':
 
 		$tipos = [ 'always' , 'hourly' , 'daily' ,'weekly' , 'monthly', 'yearly', 'never'];
-		$urls = auto_sitemap_getCustomUrls( $tipos );
+		$urls = auto_sitemap_getCustomUrls($tipos);
 
 		// if no custom urls configured, sitemap doesnt exists
-		if ( empty($urls) ) {
+		if (empty($urls)) {
 			// sitemap doesnt exists
 			return false;
 		} else {
@@ -52,16 +46,12 @@ switch ($type) {
 
   break;
 
-	case 'user':
-	case 'group':
-	case 'blog':
-	case 'file':
-	case 'event':
+	default:
 
-			$urls = auto_sitemap_getEntityUrls( $type );
+		$urls = auto_sitemap_getEntityUrls($type, $page);
 
 		// if this entity is not active in settings, then sitemap doesn't exist
-		if ( ! elgg_get_plugin_setting($type . '_url', 'auto_sitemap') ) {
+		if (!elgg_get_plugin_setting($type . '_url', 'auto_sitemap')) {
 			return false;
 		} else {
 			echo elgg_view('auto_sitemap/' . $schema . "/0_9_scheme", ['urls' => $urls,'flagXsl'=> $flagXsl]);
@@ -69,26 +59,6 @@ switch ($type) {
 		}
 
   break;
-
-	case 'other':
-
-		$otherActiveEntities = array_filter(explode(',', elgg_get_plugin_setting('other_urls_types', 'auto_sitemap')));
-
-		$urls = auto_sitemap_getOtherEntityUrls( $otherActiveEntities );
-
-		// if no other entities selected in settings, sitemap doesn't exist
-		if ( empty($urls) ) {
-			return false;
-		} else {
-			echo elgg_view('auto_sitemap/' . $schema . "/0_9_scheme", ['urls' => $urls,'flagXsl'=> $flagXsl]);
-			return true;
-		}
-
-  break;
-
-	default:
-	return false;
-	break;
 }
 
 
