@@ -19,8 +19,9 @@ foreach ($vars['sitemaps'] as $entity) {
 	if($entity == "custom") {
 		$page = 1;
 	} else {
+		$type = ($entity == "user" || $entity == "group") ? $entity : "object";
 		$count = elgg_count_entities([
-			'type' => 'object',
+			'type' => $type,
 			'subtype' => $entity
 		]);
 		$max_urls = get_max_urls_count();

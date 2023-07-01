@@ -101,7 +101,7 @@ $content .='</div>';
 
 $moduleHeader = elgg_view('output/url', [
 	'href' => '#toggle-main-url',
-	'rel' => 'toggle',
+	'class' => 'elgg-toggle',
 	'text' => elgg_echo('auto_sitemap:main_url:title') . $toggle_icon
 ]);
 
@@ -152,7 +152,7 @@ foreach ($relevantEntities as $relevantEntity) {
 
 	$moduleHeader = elgg_view('output/url', [
 		'href' => '#toggle-' . $relevantEntity,
-		'rel' => 'toggle',
+		'class' => 'elgg-toggle',
 		'text' => 	elgg_echo('collection:object:' . $relevantEntity) . $toggle_icon
 	]);
 
@@ -190,7 +190,7 @@ foreach ($frequencies as $frequency) {
 
 	$moduleHeader = elgg_view('output/url', [
 		'href' => '#toggle-' . $frequency,
-		'rel' => 'toggle',
+		'class' => 'elgg-toggle',
 		'text' => elgg_echo('auto_sitemap:module:header:changefreq') . ' ' . elgg_echo('auto_sitemap:updatefreq:' . $frequency) . $toggle_icon
 	]);
 

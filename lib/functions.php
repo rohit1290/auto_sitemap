@@ -3,7 +3,7 @@
 global $relevantEntities;
 $relevantEntities = ['user', 'group'];
 
-$entity_stats = get_entity_statistics();
+$entity_stats = elgg_get_entity_statistics();
 
 foreach($entity_stats['object'] as $subtype => $counter) {
 	if ($subtype != 'plugin' &&

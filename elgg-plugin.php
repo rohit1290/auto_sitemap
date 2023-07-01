@@ -4,7 +4,7 @@ require_once(__DIR__ . '/lib/functions.php');
 return [
 	'plugin' => [
 		'name' => 'Auto Sitemap',
-    'version' => '4.0',
+    'version' => '5.0',
     'dependencies' => [],
 	],
 	'routes' => [
