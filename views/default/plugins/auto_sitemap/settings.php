@@ -201,7 +201,7 @@ foreach ($frequencies as $frequency) {
 		);
 }
 
-elgg_require_js("plugins/auto_sitemap/settings");
+elgg_import_esm("plugins/auto_sitemap/settings");
 ?>
 
 <style>

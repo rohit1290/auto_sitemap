@@ -8,10 +8,7 @@
 		"source": "https://github.com/rohit1290/auto_sitemap",
 		"issues": "https://github.com/rohit1290/auto_sitemap/issues"
 	},
-	"require": {
-		"composer/installers": "^1.0.8"
-	},
 	"conflict": {
-		"elgg/elgg": "<5.0"
+		"elgg/elgg": "<6.0"
 	}
 }
