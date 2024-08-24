@@ -2,7 +2,7 @@
 
 header ("Content-Type:text/xml");
 
-$body .='<?xml version="1.0" encoding="UTF-8"?>';
+$body ='<?xml version="1.0" encoding="UTF-8"?>';
 
 if ( $vars['flagXsl'] ) {
 	$body .='
