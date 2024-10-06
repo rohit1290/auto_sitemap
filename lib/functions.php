@@ -84,6 +84,7 @@ function auto_sitemap_getEntityUrls($entity, $page) {
 
 	$options['limit'] = $max_urls;
 	$options['offset'] = $max_urls*($page - 1);
+	$options['access_id'] = ACCESS_PUBLIC;
 
 	$count = elgg_count_entities($options);
 	if($count == 0) { return []; }
