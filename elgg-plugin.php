@@ -10,7 +10,7 @@ return [
 	'routes' => [
 		'collection:object:auto_sitemap' => [
 			'path' => 'auto_sitemap/{type}/{page}',
-			'resource' => 'auto_sitemap/default',
+			'resource' => 'auto_sitemap/view',
 		],
 		'auto_sitemap:object:xmlview' => [
 			'path' => 'sitemap.xml',
