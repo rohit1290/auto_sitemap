@@ -29,6 +29,10 @@ foreach($entity_stats['object'] as $subtype => $counter) {
 		$subtype != 'custom_profile_type' &&
 		$subtype != 'custom_profile_field_category' &&
 		$subtype != 'collaboration' &&
+		$subtype != 'folder' &&
+		$subtype != 'badge' &&
+		$subtype != 'exam' &&
+		$subtype != 'reported_content' &&
 		$subtype != 'event_calendar'
 		) {
 			$relevantEntities[] = $subtype;
