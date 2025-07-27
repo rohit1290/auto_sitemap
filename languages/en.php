@@ -16,6 +16,7 @@ return [
 	'auto_sitemap:schema:title' => 'Scheme of the sitemap',
 	'auto_sitemap:schema:description' => 'For the time being there is only implemented version 0.9 of sitemaps.org.',
 	'auto_sitemap:main_url:title' => 'Main URL of the site',
+  'auto_sitemap:main_url:description' => 'Site URL',
 
 	/* Options dropdown*/
 	'auto_sitemap:updatefreq:disabled' => 'disabled (Skip this value)',
