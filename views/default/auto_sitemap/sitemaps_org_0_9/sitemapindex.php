@@ -40,7 +40,7 @@ foreach ($vars['sitemaps'] as $entity) {
 	for ($i = 1; $i <= $page ; $i++) {
 		$body .= '<sitemap>
 								<loc>' . elgg_get_site_url() . 'auto_sitemap/' . $entity . '/' . $i . '</loc>
-								<lastmod> '.date('Y-m-d', $last_modified).' </lastmod>
+								<lastmod>' . date('Y-m-d', $last_modified) . '</lastmod>
 							</sitemap>';
 	}
 }
