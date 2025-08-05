@@ -51,7 +51,10 @@ switch ($type) {
 	$urls = auto_sitemap_getEntityUrls($type, $page);
 	
 	// if this entity is not active in settings, then sitemap doesn't exist
-	if (!elgg_get_plugin_setting($type . '_url', 'auto_sitemap')) {
+	if (empty($urls)) {
+		// sitemap doesnt exists
+		return false;
+	} else if (!elgg_get_plugin_setting($type . '_url', 'auto_sitemap')) {
 		return false;
 	} else {
 		echo elgg_view('auto_sitemap/' . $schema . "/0_9_scheme", ['urls' => $urls,'flagXsl'=> $flagXsl]);
