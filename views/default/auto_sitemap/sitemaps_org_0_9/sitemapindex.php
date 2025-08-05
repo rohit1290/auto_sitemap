@@ -17,6 +17,7 @@ if ( $vars['flagXsl'] ) {
 foreach ($vars['sitemaps'] as $entity) {
 	if($entity == "custom") {
 		$page = 1;
+		$last_modified = time();
 	} else {
 		$type = ($entity == "user" || $entity == "group") ? $entity : "object";
 		$count = elgg_count_entities([
@@ -25,10 +26,22 @@ foreach ($vars['sitemaps'] as $entity) {
 		]);
 		$max_urls = get_max_urls_count();
 		$page = ceil($count/$max_urls);
+		
+		$lastmod = elgg_get_entities([
+			'type' => $type,
+			'subtype' => $entity,
+			'limit' => 1,
+			'order_by' => 'e.time_updated DESC',
+		]);
+		$last_modified = $lastmod[0]->getTimeUpdated();
+		
 	}
 	
 	for ($i = 1; $i <= $page ; $i++) {
-		$body .= '<sitemap><loc>' . elgg_get_site_url() . 'auto_sitemap/' . $entity . '/' . $i . '</loc></sitemap>';
+		$body .= '<sitemap>
+								<loc>' . elgg_get_site_url() . 'auto_sitemap/' . $entity . '/' . $i . '</loc>
+								<lastmod> '.date('Y-m-d', $last_modified).' </lastmod>
+							</sitemap>';
 	}
 }
 
