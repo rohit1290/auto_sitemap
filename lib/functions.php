@@ -59,7 +59,7 @@ function auto_sitemap_getCustomUrls($entities) {
 
 		$urlList = [];
 		$urlList = explode("\n", elgg_get_plugin_setting( $entity . '_url','auto_sitemap'));
-		$priority = elgg_get_plugin_setting( $entity . '_url_priority','auto_sitemap');
+		$priority = elgg_get_plugin_setting( $entity . '_priority','auto_sitemap');
 
 		foreach ($urlList as $url) {
 			if ( ! empty($url) ){
@@ -90,8 +90,8 @@ function auto_sitemap_getEntityUrls($entity, $page) {
 		break;
 	}
 
-	$changefreq = elgg_get_plugin_setting( $entity . '_url_changefreq','auto_sitemap');
-	$priority = elgg_get_plugin_setting( $entity . '_url_priority','auto_sitemap');
+	$changefreq = elgg_get_plugin_setting( $entity . '_changefreq','auto_sitemap');
+	$priority = elgg_get_plugin_setting( $entity . '_priority','auto_sitemap');
 	$max_urls = get_max_urls_count();
 
 	$options['limit'] = $max_urls;
