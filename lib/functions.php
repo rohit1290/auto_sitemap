@@ -46,7 +46,7 @@ function auto_sitemap_getCustomUrls($entities) {
 	$changefreq = elgg_get_plugin_setting('main_url_changefreq','auto_sitemap');
 	$priority = elgg_get_plugin_setting('main_url_priority','auto_sitemap');
 
-	if ( !empty($mainurl) ){
+	if (!empty($mainurl)) {
 		$urls[] = [
 			'loc' => $mainurl,
 			'changefreq' => $changefreq,
@@ -62,7 +62,7 @@ function auto_sitemap_getCustomUrls($entities) {
 		$priority = elgg_get_plugin_setting( $entity . '_priority','auto_sitemap');
 
 		foreach ($urlList as $url) {
-			if ( ! empty($url) ){
+			if (!empty($url)) {
 				$urls[] = [
 					'loc' => $url,
 					'changefreq' => $entity,
@@ -103,13 +103,15 @@ function auto_sitemap_getEntityUrls($entity, $page) {
 	if($count == 0) { return []; }
 
 	foreach ($objects as $value) {
-
-		$entityUrls[] = [
-			'loc' => $value->getURL(),
-			'lastmod' => $value->getTimeUpdated(),
-			'changefreq' => $changefreq,
-			'priority' => $priority
-		];
+		$loc = $value->getURL();
+		if (!empty($loc)) {
+			$entityUrls[] = [
+				'loc' => $loc,
+				'lastmod' => $value->getTimeUpdated(),
+				'changefreq' => $changefreq,
+				'priority' => $priority
+			];
+		}
 	}
 
 	// Compare
